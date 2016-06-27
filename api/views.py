@@ -11,7 +11,7 @@ class CardListView(ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
         request.data._mutable = True
-        request.data['profile'] = request.user.profile.id
+        request.data['profile'] = request.user.id
         return super(CardListView, self).post(request, *args, **kwargs)
 
     def get_queryset(self):

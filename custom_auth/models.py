@@ -4,19 +4,11 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     is_company = models.BooleanField(default=False)
+    avatar = models.ImageField(null=True, blank=True)
     REQUIRED_FIELDS = AbstractUser.REQUIRED_FIELDS + ['is_company']
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(CustomUser)
-
-
-class Company(models.Model):
-    user = models.OneToOneField(CustomUser)
-    logo = models.ImageField(null=True, blank=True)
-
-
 class Address(models.Model):
-    company = models.ForeignKey(Company)
+    company = models.ForeignKey(CustomUser)
     country = models.CharField(max_length=50)
     city = models.CharField(max_length=100)
