@@ -14,6 +14,18 @@ class Company(models.Model):
     user = models.OneToOneField(User)
     logo = models.ImageField(null=True, blank=True)
 
+    @property
+    def safe_logo(self):
+        if self.logo is not None:
+            return self.logo.url
+        else:
+            return ''
+
+    @safe_logo.setter
+    def safe_logo(self, value):
+        self.logo = value
+
+
 
 class Address(models.Model):
     company = models.ForeignKey(Company)

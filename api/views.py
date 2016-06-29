@@ -52,3 +52,4 @@ class AddressElementView(RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
             return Address.objects.filter(company_id=self.kwargs['company_id'])
+
